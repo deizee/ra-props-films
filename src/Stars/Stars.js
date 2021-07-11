@@ -3,29 +3,32 @@ import Star from "./Star/Star";
 import shortid from "shortid";
 
 const Stars = (props) => {
-    if (props.count < 0 || props.count > 5) {
-        return <p>Ошибка: невалидное значение рейтинга</p>;
+    const { count } = props;
+    if (count < 0 || count > 5 || !Number.isInteger(count)) {
+        return null;
     }
 
-    let starsIndexArray = [];
-    for (let i = 0; i < props.count; i++) {
-        starsIndexArray.push(i);
+    let starsList = [];
+    for (let i = 0; i < count; i++) {
+        starsList.push({
+            key: shortid.generate()
+        });
     }
-
-    const starsKeys = starsIndexArray.map((index) =>
-        ({id: shortid.generate(), value: index})
-    );
-
-    const starsListArray = starsKeys.map((item) =>
-        <Star key={item.id} />
-    );
 
     return (
-        <div className="rating-container">
-            <h1>Рейтинг фильма ({props.count})</h1>
-            <ul className="rating">{starsListArray}</ul>
+        <div className="rating-card">
+            <h2>Рейтинг фильма ({count})</h2>
+            <ul className="card-body-stars u-clearfix">
+                <li className="rating-item">
+                    {starsList.map((el) => <Star key={el.key} />)}
+                </li>
+            </ul>
         </div>
     );
+}
+
+Stars.defaultProps = {
+    count: 0
 }
 
 Stars.propTypes = {

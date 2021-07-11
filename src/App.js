@@ -2,10 +2,14 @@ import './App.css';
 import Stars from "./Stars/Stars";
 
 function App() {
-  const count = (Math.random() * 5).toFixed(0);
-
   return (
-      <Stars count={count} />
+      <div className="App">
+        <Stars count={3} />
+        <Stars count={2} />
+        <Stars count={4} />
+        <Stars count={10} />
+        <Stars />
+      </div>
   );
 }
 
