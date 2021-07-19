@@ -19,9 +19,7 @@ const Stars = (props) => {
         <div className="rating-card">
             <h2>Рейтинг фильма ({count})</h2>
             <ul className="card-body-stars u-clearfix">
-                <li className="rating-item">
-                    {starsList.map((el) => <Star key={el.key} />)}
-                </li>
+                {starsList.map((el) => <Star key={el.key} />)}
             </ul>
         </div>
     );
